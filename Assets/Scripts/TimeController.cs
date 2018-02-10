@@ -27,13 +27,14 @@ public class TimeController : MonoBehaviour {
 	}
 
 	void Update ()
-	{
-		Time.timeScale += (1f / slowdownLength) * Time.unscaledDeltaTime;
-		Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
-		timeMeter = Mathf.Clamp(timeMeter, 0f, 100f);
-		slider.value = timeMeter;
-		if (restoring && timeMeter < 100f) {
-			timeMeter += restoreRate;
+	{	if (!PauseMenu.isPaused) {
+			Time.timeScale += (1f / slowdownLength) * Time.unscaledDeltaTime;
+			Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+			timeMeter = Mathf.Clamp(timeMeter, 0f, 100f);
+			slider.value = timeMeter;
+			if (restoring && timeMeter < 100f) {
+				timeMeter += restoreRate;
+			}
 		}
 	}
 

@@ -25,16 +25,19 @@ public class PlayerController: MonoBehaviour
 
 	void Update ()
 	{
-		if (Input.GetButton("Fire1") && Time.time > nextFire)
+		if (!PauseMenu.isPaused)
 		{
-			nextFire = Time.time + fireRate;
-			Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-		}
-		if (Input.GetButton ("Jump")) {
-			timeController.BulletTime ();
-		} 
-		if (Input.GetButtonUp("Jump")) {
-			timeController.RestoreTime ();
+			if (Input.GetButton("Fire1") && Time.time > nextFire)
+			{
+				nextFire = Time.time + fireRate;
+				Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+			}
+			if (Input.GetButton ("Jump")) {
+				timeController.BulletTime ();
+			} 
+			if (Input.GetButtonUp("Jump")) {
+				timeController.RestoreTime ();
+			}
 		}
 	}
 
